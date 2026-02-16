@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "entur": {
+      "description": "Entur journey planner and geocoder (Norwegian public transport): search_stops, search_journey",
+      "baseUrl": "http://localhost:3000/mcp"
+    }
+  }
+}

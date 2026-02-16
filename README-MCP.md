@@ -34,9 +34,23 @@ Search for journeys between two stops (Entur Journey Planner v3).
 
 Returns trip options with departure/arrival times, duration and legs (rail, bus, foot).
 
+## Use with mcporter
+
+This project includes **mcporter** config so you can call the Entur MCP from the CLI. Start the server in one terminal, then from this repo:
+
+```bash
+npm run mcp
+# in another terminal:
+npx mcporter list entur
+npx mcporter call entur.search_stops name="Oslo S" size=5
+npx mcporter call entur.search_journey fromPlaceId=NSR:StopPlace:59872 toPlaceId=NSR:StopPlace:59983 transportMode=train
+```
+
+Config: `config/mcporter.json` (server name `entur`, baseUrl `http://localhost:3000/mcp`). Mcporter also reads `~/.mcporter/mcporter.json` and Cursor/Claude imports; use `mcporter config add` to add this server to your home config if you prefer.
+
 ## Use with an MCP client
 
 Configure your client (e.g. Claude Desktop, Cursor) to use this server:
 
-**stdio:** Run `node dist/server.js` (mcp-use also supports stdio).  
+**HTTP:** Run `npm run mcp`, then point the client at `http://localhost:3000/mcp`.  
 **SSE:** Use `http://localhost:3000/sse` if the server is running and the client supports SSE.
